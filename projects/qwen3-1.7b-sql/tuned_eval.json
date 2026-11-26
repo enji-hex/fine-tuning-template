@@ -7,7 +7,7 @@
         "valid_err": null,
         "exec_ok": true,
         "exec_err": null,
-        "time_elapsed_s": "17.789",
+        "time_elapsed_s": "0.510",
         "completion_tokens": 11
     },
     {
@@ -18,7 +18,7 @@
         "valid_err": null,
         "exec_ok": false,
         "exec_err": "Expected [('Alice', 'Smith'), ('Charlie', 'Brown')], got [('Alice', 'Smith')]",
-        "time_elapsed_s": "0.315",
+        "time_elapsed_s": "0.333",
         "completion_tokens": 31
     },
     {
@@ -29,7 +29,7 @@
         "valid_err": null,
         "exec_ok": true,
         "exec_err": null,
-        "time_elapsed_s": "0.144",
+        "time_elapsed_s": "0.147",
         "completion_tokens": 10
     },
     {
@@ -40,7 +40,7 @@
         "valid_err": null,
         "exec_ok": true,
         "exec_err": null,
-        "time_elapsed_s": "0.130",
+        "time_elapsed_s": "0.129",
         "completion_tokens": 8
     },
     {
@@ -51,7 +51,7 @@
         "valid_err": null,
         "exec_ok": true,
         "exec_err": null,
-        "time_elapsed_s": "0.235",
+        "time_elapsed_s": "0.233",
         "completion_tokens": 21
     }
 ]

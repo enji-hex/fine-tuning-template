@@ -9,7 +9,7 @@ import re
 import sqlite3
 from pathlib import Path
 
-
+CURR_DIR = Path(__file__).parent.as_posix()
 SYSTEM_MSG = """You are a SQL assistant.
 Output only valid SQLite.
 
@@ -142,10 +142,10 @@ def run_eval(model_path:str, queries:list[dict],out_path:str):
 if __name__ == '__main__':
     print("CUDA support:", llama_cpp.llama_supports_gpu_offload())
     original_model   = "./models/Qwen3-1.7b-GGUF/Qwen3-1.7B-Q4_K_M.gguf"
-    fine_tuned_model = "./Qwen3-1.7B-SQL.Q4_K_M.gguf"
+    fine_tuned_model = f"{CURR_DIR}/Qwen3-1.7B-SQL.Q4_K_M.gguf"
 
     for model,out_path in [
-        (original_model,"./base_eval.json"),
-        (fine_tuned_model,"./tuned_eval.json")
+        (original_model,f"{CURR_DIR}/base_eval.json"),
+        (fine_tuned_model,f"{CURR_DIR}/tuned_eval.json")
         ]:
         run_eval(model,TEST_CASES,out_path)

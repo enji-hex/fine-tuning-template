@@ -1,41 +1,42 @@
----
-language:
-- en
-license: apache-2.0
-base_model: Qwen/Qwen3-1.7B
-datasets:
-- kristiannordby/function_call_sql
-tags:
-- text-to-sql
-- sqlite
-- gguf
-- qwen3
-- unsloth
----
 
-# Qwen3-1.7B-SQL (GGUF)
+## rfc-finetuning-template
 
-Fine-tuned `Qwen/Qwen3-1.7B` (QLoRA `r=16`, 3 epochs via Unsloth) for generating raw SQLite queries from database schemas.
+General template for fine tuning experiments.
 
-## Benchmark (`check.py`)
+Current future ideas is following:
+| Tune Name                        | Purpose                                                    | Status      |
+| -------------------------------- | ---------------------------------------------------------- | ----------- |
+| Text-to-SQL                      | SQL query generation from natural text.                    | DONE        |
+| Tool calling tuning              | Ability for model to call tools via JSON schema.           | IN PROGRESS |
+| Telegraphic style thinking tunig | Cut extra tokens during thinking phase.                    | IN PROGRESS |
+| In-turn code execution           | Increase model ability to handle calculation-related tasks | IN PROGRESS |
 
-| Model | Syntax Valid (`sqlglot`) | Execution Match (SQLite) |
-|---|---|---|
-| `Qwen3-1.7B-Q4_K_M` (Base) | 0/5 | 0/5 |
-| `Qwen3-1.7B-Q4_K_M` (Base with thinking filter) | 3/5 | 3/5 |
-| `Qwen3-1.7B-SQL.Q4_K_M` (Fine-tuned) | 5/5 | 4/5 |
 
-## Usage (`llama-cpp-python`)
+**Backlog ideas**
+- Text-to-MongoDB: Translate natural language descriptions into complex MongoDB queries (same deterministic verification pattern as Text-to-SQL).
 
-```python
-from llama_cpp import Llama
+#### Proposed project structure
 
-llm = Llama(model_path="Qwen3-1.7B-SQL.Q4_K_M.gguf", n_ctx=4096, n_gpu_layers=-1)
-resp = llm.create_chat_completion(
-    messages=[
-        {"role": "system", "content": "You are a SQL assistant.\nOutput only valid SQLite.\n\n<SCHEMA>"},
-        {"role": "user", "content": "Select all columns for users older than 30."},
-    ],
-    temperature=0.0,
-)
-print(resp["choices"][0]["message"]["content"])
+```text
+repo:
+|- models   (local)
+|- datasets (local)
+|-project/project-N
+        |- README.md        # Modelcard
+        |- train.ipnb       # Cloud/Colab-ready fine-tuning & GGUF export pipeline
+        |- check.py         # Deterministic evaluation & verification harness
+        |- base_eval.json   # Default model evaluation metrics
+        |- tune_eval.json   # Tuned model evaluation metrics
+        |- model.gguf
+        |- Modelfile
+```
+
+#### Proposed HF uploading system
+```sh
+cd ./project-N && hf push ..
+```
+
+**Reasons**:
+- All experiments stays in one github repo, without model files
+- HF repos contains ONLY flat ready to use sub-repo snaphots
+- Ability to test new model agains several experiments
