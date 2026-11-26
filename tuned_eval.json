@@ -1,0 +1,57 @@
+[
+    {
+        "id": 0,
+        "query": "Select all columns for users older than 30.",
+        "response": "SELECT * FROM Users WHERE age > 30;",
+        "valid_ok": true,
+        "valid_err": null,
+        "exec_ok": true,
+        "exec_err": null,
+        "time_elapsed_s": "17.789",
+        "completion_tokens": 11
+    },
+    {
+        "id": 1,
+        "query": "Select the name and surname of all users created in 2026.",
+        "response": "SELECT name, surname FROM Users WHERE created_at = '2026-01-15 10:30:00';",
+        "valid_ok": true,
+        "valid_err": null,
+        "exec_ok": false,
+        "exec_err": "Expected [('Alice', 'Smith'), ('Charlie', 'Brown')], got [('Alice', 'Smith')]",
+        "time_elapsed_s": "0.315",
+        "completion_tokens": 31
+    },
+    {
+        "id": 2,
+        "query": "Select all columns for orders that have not been delivered yet.",
+        "response": "SELECT * FROM orders WHERE delivered_at IS NULL;",
+        "valid_ok": true,
+        "valid_err": null,
+        "exec_ok": true,
+        "exec_err": null,
+        "time_elapsed_s": "0.144",
+        "completion_tokens": 10
+    },
+    {
+        "id": 3,
+        "query": "Count the total number of orders.",
+        "response": "SELECT COUNT(*) AS count FROM orders;",
+        "valid_ok": true,
+        "valid_err": null,
+        "exec_ok": true,
+        "exec_err": null,
+        "time_elapsed_s": "0.130",
+        "completion_tokens": 8
+    },
+    {
+        "id": 4,
+        "query": "Select the order name and user name for all orders.",
+        "response": "SELECT orders.name, users.name AS user_name FROM orders JOIN users ON orders.user_id = users.id;",
+        "valid_ok": true,
+        "valid_err": null,
+        "exec_ok": true,
+        "exec_err": null,
+        "time_elapsed_s": "0.235",
+        "completion_tokens": 21
+    }
+]

@@ -1,0 +1,27 @@
+[project]
+name = "qwen3-1.7b-sql"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "sqlglot>=30.33.0",
+    "llama-cpp-python",
+]
+
+[tool.uv]
+package = false
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+# [tool.uv.build-backend]
+# module-name = "_10_24_fine_tuning"
+
+[[tool.uv.index]]
+name = "llama-vulkan"
+url = "https://abetlen.github.io/llama-cpp-python/whl/vulkan"
+explicit = true
+
+[tool.uv.sources]
+llama-cpp-python = { index = "llama-vulkan" }
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"

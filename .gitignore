@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+*.gguf
+*.mp4
+Modelfile
+
+# Virtual environments
+.venv
+.vscode
+unsloth_compiled_cache
+datasets
+models
