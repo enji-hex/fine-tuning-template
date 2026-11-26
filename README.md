@@ -6,7 +6,7 @@ General template for fine tuning experiments.
 Current future ideas is following:
 | Tune Name                        | Purpose                                                    | Status      |
 | -------------------------------- | ---------------------------------------------------------- | ----------- |
-| Text-to-SQL                      | SQL query generation from natural text.                    | DONE        |
+| [Text-to-SQL](./projects/qwen3-1.7b-sql/README.md)                      | SQL query generation from natural text.                    | DONE        |
 | Tool calling tuning              | Ability for model to call tools via JSON schema.           | IN PROGRESS |
 | Telegraphic style thinking tunig | Cut extra tokens during thinking phase.                    | IN PROGRESS |
 | In-turn code execution           | Increase model ability to handle calculation-related tasks | IN PROGRESS |
